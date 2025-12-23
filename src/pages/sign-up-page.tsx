@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { useState } from "react";
-import { useSignUp } from "@/hooks/mutations/use-sign-up";
+import { useSignUp } from "@/hooks/mutations/auth/use-sign-up";
 import { getErrorMessage } from "@/lib/error";
 import { toast } from "sonner";
 export default function SignUpPage() {
@@ -26,6 +26,7 @@ export default function SignUpPage() {
       <div className="text-xl font-bold">회원가입</div>
       <div>
         <Input
+          disabled={isSigningUpPending}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="py-6"
@@ -33,6 +34,7 @@ export default function SignUpPage() {
           placeholder="example@email.com"
         />
         <Input
+          disabled={isSigningUpPending}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="py-6"
@@ -41,7 +43,11 @@ export default function SignUpPage() {
         />
       </div>
       <div>
-        <Button onClick={handleSignupClick} className="w-full">
+        <Button
+          disabled={isSigningUpPending}
+          onClick={handleSignupClick}
+          className="w-full"
+        >
           회원가입
         </Button>
       </div>
