@@ -1,7 +1,17 @@
+import { Navigate, useParams } from "react-router";
+import PostItem from "@/components/post/post-item";
+import CommentEditor from "@/components/comment/comment-editor";
+import CommentList from "@/components/comment/comment-list";
 export default function PostDetailPage() {
+  const params = useParams();
+  const postId = Number(params.postId!);
+  if (!postId) return <Navigate to="/" replace />;
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1>Post Detail Page</h1>
+    <div className="flex flex-col gap-5">
+      <PostItem postId={postId} type="DETAIL" />
+      <div className="text-xl font-bold">댓글</div>
+      <CommentEditor type="CREATE" postId={postId} />
+      <CommentList postId={postId} />
     </div>
   );
 }

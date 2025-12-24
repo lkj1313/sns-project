@@ -12,7 +12,6 @@ export default function LikePostButton({
   likeCount: number;
   isLiked: boolean;
 }) {
-  console.log(isLiked);
   const session = useSession();
   const userId = session?.user.id;
   const { mutate: togglePostLike } = useTogglePostLike({
