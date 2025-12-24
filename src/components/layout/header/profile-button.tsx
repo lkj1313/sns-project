@@ -16,7 +16,7 @@ export default function ProfileButton() {
   const { data: profile } = useProfileData(userId);
   if (!session) return null;
   return (
-    <div>
+    <div className="h-6 w-6">
       <Popover>
         <PopoverTrigger>
           <img
